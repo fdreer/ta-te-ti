@@ -8,7 +8,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "vite build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@types/canvas-confetti": "^1.6.0",
