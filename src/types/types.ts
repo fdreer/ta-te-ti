@@ -1,4 +1,4 @@
-import {TurnValue} from '../constants'
+import { TurnValue } from '../constants'
 
 export type Board = [
   TurnValue,
@@ -11,3 +11,8 @@ export type Board = [
   TurnValue,
   TurnValue
 ]
+
+export type StartGame = {
+  isMyTurn: boolean
+  symbol: 'X' | 'O'
+}
