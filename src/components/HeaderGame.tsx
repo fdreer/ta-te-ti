@@ -14,7 +14,7 @@ export const HeaderGame = () => {
   }
 
   const handleNavigate = async () => {
-    navigate('/ta-te-ti')
+    navigate('/')
     await gameService.leave(socket)
   }
 
