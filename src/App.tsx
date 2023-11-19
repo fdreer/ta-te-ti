@@ -8,7 +8,7 @@ import { OnlineContextProvider } from './contexts/OnlineContext'
 const App = () => {
   const router = useRoutes([
     {
-      path: '/ta-te-ti',
+      path: '/',
       element: <Outlet />,
       children: [
         { index: true, element: <Home /> },
