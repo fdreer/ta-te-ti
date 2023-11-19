@@ -1,6 +1,6 @@
 import { io, Socket } from 'socket.io-client'
 
-class SocketService {
+export class SocketService {
   private static socket: Socket
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -8,9 +8,7 @@ class SocketService {
 
   public static getSocket(): Socket {
     if (!SocketService.socket) {
-      this.socket = io('http://localhost:3000')
-
-      // if (!this.socket) return
+      this.socket = io(`${import.meta.env.VITE_URL_SERVER}`)
 
       this.socket.on('connect', () => {
         console.log(`Socket conectado id: ${this.socket?.id}`)
@@ -26,5 +24,3 @@ class SocketService {
     return this.socket
   }
 }
-
-export const socket = SocketService.getSocket()

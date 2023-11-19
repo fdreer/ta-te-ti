@@ -6,17 +6,11 @@ import { BoardGame } from '../BoardGame'
 import LoadingSpinner from '../../ui/LoadingSpinner'
 import { HeaderGame } from '../../HeaderGame'
 import { SwitchTurn } from '../SwitchTurn'
+import { useBoardContext } from '../../../hooks/useBoardOnline'
 
 export const BoardOnline = () => {
-  const {
-    board,
-    mySymbol,
-    currentTurn,
-    winner,
-    isAnotherUser,
-    play,
-    resetBoard
-  } = usePlayOnline()
+  const { isAnotherUser, winner, mySymbol, board } = useBoardContext()
+  const { currentTurn, play, resetBoard } = usePlayOnline()
 
   if (!isAnotherUser) {
     return (
@@ -30,7 +24,7 @@ export const BoardOnline = () => {
       >
         <HeaderGame />
         <section>
-          <h2 style={{ paddingBottom: '15px' }}>Esperando a otro jugador</h2>
+          <h2 style={{ paddingBottom: '15px' }}>Esperando a otro jugador...</h2>
           <LoadingSpinner />
         </section>
       </MainLayout>
@@ -42,11 +36,11 @@ export const BoardOnline = () => {
       <MainLayout>
         <section
           style={{
-            height: '130px',
+            height: '80px',
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center'
+            alignItems: 'end',
+            justifyContent: 'center',
+            gap: '35px'
           }}
         >
           {winner && <h2 style={{ fontSize: '32px' }}>GANADOR: {winner}</h2>}

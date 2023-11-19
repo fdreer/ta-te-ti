@@ -2,6 +2,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 import { Button } from './ui/buttons/Button'
 import { RoomIdTag } from './game/online/RoomIdTag'
+import gameService from '../services/game'
+import { socket } from '../contexts/OnlineContext'
 
 export const HeaderGame = () => {
   const { id } = useParams()
@@ -11,8 +13,9 @@ export const HeaderGame = () => {
     navigator.clipboard.writeText(id as string)
   }
 
-  const handleNavigate = () => {
+  const handleNavigate = async () => {
     navigate('/ta-te-ti/')
+    await gameService.leave(socket)
   }
 
   return (

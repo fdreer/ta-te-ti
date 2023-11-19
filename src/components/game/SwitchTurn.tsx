@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import { CursorWindows } from '../ui/CursorWindows'
 
 interface SlideProp {
-  turn: TurnValue
+  $turn: TurnValue
 }
 
 const SlideTurn = styled.div<SlideProp>`
   transition: all 0.3s ease-in-out;
-  transform: ${({ turn }) =>
-    turn === Turn.O ? 'translateX(17px)' : 'translateX(-27px)'};
+  transform: ${({ $turn }) =>
+    $turn === Turn.O ? 'translateX(17px)' : 'translateX(-27px)'};
 `
 
 const ActualTurn = styled.p`
@@ -18,14 +18,13 @@ const ActualTurn = styled.p`
 
 type SwitchTurnProps = {
   turn: TurnValue
-  mySymbol?: TurnValue
 }
 
-export const SwitchTurn = ({ turn, mySymbol }: SwitchTurnProps) => {
+export const SwitchTurn = ({ turn }: SwitchTurnProps) => {
   return (
     <section>
       <article>
-        <SlideTurn turn={turn}>
+        <SlideTurn $turn={turn}>
           <CursorWindows />
         </SlideTurn>
       </article>

@@ -1,20 +1,8 @@
 import { useState } from 'react'
 import { Board } from '../types/types'
-import { Turn, TurnValue } from '../constants'
+import { INITIAL_BOARD, Turn, TurnValue } from '../constants'
 import { checkWinner } from '../utils/board'
 import confetti from 'canvas-confetti'
-
-const INITIAL_BOARD = [
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  null
-] as Board
 
 export default function usePlay() {
   const [board, setBoard] = useState<Board>(INITIAL_BOARD)
