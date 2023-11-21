@@ -53,59 +53,61 @@ export const OnlineContextProvider = ({
   //     })
   // }
 
-  const handleGameStart = async () => {
-    await gameService.onStart(socket, ({ isMyTurn, symbol }) => {
+  const handleGameStart = () => {
+    gameService.onStart(socket, ({ isMyTurn, symbol }) => {
       setIsMyTurn(isMyTurn)
       setMySymbol(symbol)
       setIsAnotherUser(true)
     })
   }
 
-  const handleGameUpdate = async () => {
-    await gameService.onUpdate(socket, newBoard => {
-      setIsMyTurn(true)
-      setBoard(newBoard)
-
-      const isWinner = checkWinner(newBoard)
-      if (isWinner) {
-        setWinner(mySymbol === Turn.X ? Turn.O : Turn.X)
-        confetti() // TODO: deberia haber algun efecto que indique que perdiste y no los confettis
-        return
-      }
-    })
-  }
-
-  const handleGameReset = async () => {
-    await gameService.onResetBoard(socket, ({ isMyTurn, symbol }) => {
+  const handleGameReset = () => {
+    gameService.onResetBoard(socket, ({ isMyTurn, symbol }) => {
       setBoard(INITIAL_BOARD)
       setMySymbol(symbol)
       setIsMyTurn(isMyTurn)
-      setWinner(false)
+      setWinner(null)
     })
   }
 
-  const handleGameLeave = async () => {
-    await gameService.onLeave(socket, () => {
+  const handleGameLeave = () => {
+    gameService.onLeave(socket, () => {
       setIsAnotherUser(false)
       setBoard(INITIAL_BOARD)
       setMySymbol(null)
       setIsMyTurn(false)
-      setWinner(false)
+      setWinner(null)
     })
   }
 
   useEffect(() => {
     handleGameStart()
-    handleGameUpdate()
     handleGameReset()
     handleGameLeave()
-
-    return () => {
-      // gameService
-      //   .leaveGame(socket)
-      //   .then(() => console.log('Usuario desconectado'))
-    }
   }, [])
+
+  // Este efecto se ejecuta cada vez que 'mySymbol' cambia.
+  // Cuando 'mySymbol' es null, no se configura el oyente de eventos.
+  // Cuando 'mySymbol' se actualiza a un valor no nulo, se configura el oyente de eventos con el valor actualizado de 'mySymbol'.
+  // Esto es necesario porque los callbacks definidos dentro de useEffect utilizan una "instantánea" del estado y las props en el momento en que se definen.
+  // Aunque 'mySymbol' se actualiza más tarde, el callback todavía estaría utilizando el valor antiguo de 'mySymbol' que es null.
+  // Al mover esta lógica a un efecto separado, nos aseguramos de que el callback siempre tenga el valor más reciente de 'mySymbol'.
+  useEffect(() => {
+    if (mySymbol !== null) {
+      gameService.onUpdate(socket, newBoard => {
+        setIsMyTurn(true)
+        setBoard(newBoard)
+
+        const isWinner = checkWinner(newBoard)
+
+        if (isWinner) {
+          setWinner(mySymbol === Turn.X ? Turn.O : Turn.X)
+          confetti() // TODO: deberia haber algun efecto que indique que perdiste y no los confettis
+          return
+        }
+      })
+    }
+  }, [mySymbol])
 
   return (
     <OnlineContext.Provider

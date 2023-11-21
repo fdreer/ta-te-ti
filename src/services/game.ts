@@ -18,34 +18,31 @@ class GameService {
     })
   }
 
-  public async onStart(socket: Socket, listiner: (options: StartGame) => void) {
+  public onStart(socket: Socket, listiner: (options: StartGame) => void) {
     socket.on(Event.START_GAME, listiner)
   }
 
-  public async update(socket: Socket, board: Board) {
+  public update(socket: Socket, board: Board) {
     socket.emit(Event.UPDATE_GAME, board)
   }
 
-  public async onUpdate(socket: Socket, listiner: (board: Board) => void) {
+  public onUpdate(socket: Socket, listiner: (board: Board) => void) {
     socket.on(Event.ON_UPDATE_GAME, board => listiner(board))
   }
 
-  public async resetBoard(socket: Socket) {
+  public resetBoard(socket: Socket) {
     socket.emit(Event.RESET_BOARD)
   }
 
-  public async onResetBoard(
-    socket: Socket,
-    listiner: (options: StartGame) => void
-  ) {
+  public onResetBoard(socket: Socket, listiner: (options: StartGame) => void) {
     socket.on(Event.ON_RESET_BOARD, listiner)
   }
 
-  public async leave(socket: Socket) {
+  public leave(socket: Socket) {
     socket.emit(Event.LEAVE)
   }
 
-  public async onLeave(socket: Socket, listiner: () => void) {
+  public onLeave(socket: Socket, listiner: () => void) {
     socket.on(Event.ROOM_LEFT, listiner)
   }
 }

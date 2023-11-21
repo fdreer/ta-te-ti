@@ -21,7 +21,7 @@ const usePlayOnline = () => {
     if (isMyTurn === false || board[index] || winner) return
     const newBoard: Board = [...board]
     newBoard[index] = mySymbol
-    await gameService.update(socket, newBoard)
+    gameService.update(socket, newBoard)
     setBoard(newBoard)
     setIsMyTurn(false)
 
@@ -34,9 +34,9 @@ const usePlayOnline = () => {
   }
 
   const resetBoard = async () => {
-    await gameService.resetBoard(socket)
+    gameService.resetBoard(socket)
     setBoard(INITIAL_BOARD)
-    setWinner(false)
+    setWinner(null)
   }
 
   return {
