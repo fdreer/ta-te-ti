@@ -41,7 +41,7 @@ type Props = {
 
 export const Button = ({ children, onClick, type, style }: Props) => {
   return (
-    <StyledButton type={type} style={style} onClick={onClick}>
+    <StyledButton type={type || 'button'} style={style} onClick={onClick}>
       {children}
     </StyledButton>
   )
