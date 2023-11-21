@@ -11,6 +11,7 @@ export const Board = () => {
       <section
         style={{
           height: '100px',
+          marginTop: '30px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',

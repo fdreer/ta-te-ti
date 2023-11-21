@@ -37,6 +37,7 @@ export const BoardOnline = () => {
         <section
           style={{
             height: '80px',
+            marginTop: '30px',
             display: 'flex',
             alignItems: 'end',
             justifyContent: 'center',
