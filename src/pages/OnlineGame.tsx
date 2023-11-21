@@ -62,6 +62,8 @@ const InputStyled = styled.input`
   border: 2px inset #d5d5d5;
   color: #424242;
   background: #fff;
+  /* box-shadow: -1px -1px 0 0 #828282; */
+  -webkit-box-shadow: -1px -1px 0 0 #828282;
   box-shadow: -1px -1px 0 0 #828282;
   margin-top: 4px;
   padding-left: 2px;

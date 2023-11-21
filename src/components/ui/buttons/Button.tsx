@@ -6,6 +6,10 @@ const StyledButton = styled.button`
   outline: 1px dotted rgb(37, 37, 37);
   outline-offset: -4px;
   background: hsl(0deg 0% 75%);
+  /* box-shadow: inset -1px -1px #292929, inset 1px 1px #fff,
+    inset -2px -2px rgb(158, 158, 158), inset 2px 2px #ffffff; */
+  -webkit-box-shadow: inset -1px -1px #292929, inset 1px 1px #fff,
+    inset -2px -2px rgb(158, 158, 158), inset 2px 2px #ffffff;
   box-shadow: inset -1px -1px #292929, inset 1px 1px #fff,
     inset -2px -2px rgb(158, 158, 158), inset 2px 2px #ffffff;
   font-size: 14px;
@@ -19,6 +23,10 @@ const StyledButton = styled.button`
   font-size: 1rem;
 
   &:active {
+    /* box-shadow: inset -1px -1px #fff, inset 1px 1px #292929,
+      inset -2px -2px #ffffff, inset 2px 2px rgb(158, 158, 158); */
+    -webkit-box-shadow: inset -1px -1px #fff, inset 1px 1px #292929,
+      inset -2px -2px #ffffff, inset 2px 2px rgb(158, 158, 158);
     box-shadow: inset -1px -1px #fff, inset 1px 1px #292929,
       inset -2px -2px #ffffff, inset 2px 2px rgb(158, 158, 158);
   }
