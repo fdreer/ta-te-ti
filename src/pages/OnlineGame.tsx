@@ -5,6 +5,7 @@ import { MainLayout } from '../MainLayout'
 import { Button } from '../components/ui/buttons/Button'
 import styled from 'styled-components'
 import { socket } from '../contexts/OnlineContext'
+import Footer from '../components/Footer'
 
 export const OnlineGame = () => {
   const [join, setJoin] = useState<boolean>(false)
@@ -26,34 +27,37 @@ export const OnlineGame = () => {
   }
 
   return (
-    <MainLayout style={{ height: '100vh' }}>
-      <h1>TA-TE-TI</h1>
-      <section style={{ display: 'flex', gap: '20px', paddingTop: '15px' }}>
-        <Button onClick={handleCreateRoom}>CREAR SALA</Button>
-        <Button onClick={() => setJoin(true)}>UNIRSE A SALA</Button>
-      </section>
+    <>
+      <MainLayout $flexGrow={true}>
+        <h1>TA-TE-TI</h1>
+        <section style={{ display: 'flex', gap: '20px', paddingTop: '15px' }}>
+          <Button onClick={handleCreateRoom}>CREAR SALA</Button>
+          <Button onClick={() => setJoin(true)}>UNIRSE A SALA</Button>
+        </section>
 
-      {join && (
-        <form
-          style={{
-            display: 'flex',
-            gap: '10px',
-            padding: '20px 0px'
-          }}
-          onSubmit={handleJoinRoom}
-        >
-          <InputStyled
-            type="text"
-            name="roomId"
-            onChange={handleChangeRoomId}
-            placeholder="ROOM ID"
-          />
-          <Button style={{ maxWidth: '80px' }} type="submit">
-            UNIRSE
-          </Button>
-        </form>
-      )}
-    </MainLayout>
+        {join && (
+          <form
+            style={{
+              display: 'flex',
+              gap: '10px',
+              padding: '20px 0px'
+            }}
+            onSubmit={handleJoinRoom}
+          >
+            <InputStyled
+              type="text"
+              name="roomId"
+              onChange={handleChangeRoomId}
+              placeholder="ROOM ID"
+            />
+            <Button style={{ maxWidth: '80px' }} type="submit">
+              UNIRSE
+            </Button>
+          </form>
+        )}
+      </MainLayout>
+      <Footer />
+    </>
   )
 }
 

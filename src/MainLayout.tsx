@@ -1,18 +1,13 @@
 import { styled } from 'styled-components'
 
-export const MainLayout = ({
-  children,
-  style
-}: {
-  children: React.ReactNode
-  style?: React.CSSProperties
-}) => {
-  return <MainStyled style={style}>{children}</MainStyled>
+type MainStyledProps = {
+  $flexGrow?: boolean
 }
 
-const MainStyled = styled.main`
+export const MainLayout = styled.main<MainStyledProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-grow: ${({ $flexGrow }) => ($flexGrow ? '1' : '0')};
 `

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { MainLayout } from '../MainLayout'
 import { Button } from '../components/ui/buttons/Button'
+import Footer from '../components/Footer'
 
 export const Home = () => {
   const navigate = useNavigate()
@@ -14,12 +15,15 @@ export const Home = () => {
   }
 
   return (
-    <MainLayout style={{ height: '100vh' }}>
-      <h1>TA-TE-TI</h1>
-      <section style={{ display: 'flex', gap: '20px', paddingTop: '15px' }}>
-        <Button onClick={setOffline}>OFFLINE</Button>
-        <Button onClick={setOnline}>ONLINE</Button>
-      </section>
-    </MainLayout>
+    <>
+      <MainLayout $flexGrow={true}>
+        <h1>TA-TE-TI</h1>
+        <section style={{ display: 'flex', gap: '20px', paddingTop: '15px' }}>
+          <Button onClick={setOffline}>OFFLINE</Button>
+          <Button onClick={setOnline}>ONLINE</Button>
+        </section>
+      </MainLayout>
+      <Footer />
+    </>
   )
 }
